@@ -11,6 +11,8 @@ var app = {
 
 //        var iisurl = "https://iiswebsrv.herokuapp.com/";
         var iisWebSession = "iisWebSession";
+        iisurl = iisurl.replace("abc", "");
+        iisurl = iisurl.replace("abc", "");        
 //        var custObj = 'custObj';
 //        var accList = 'accList';
 
@@ -26,86 +28,25 @@ var app = {
         var accObjListStr = iisWebObj.accObjListStr;
         var accObjList = JSON.parse(accObjListStr);
 
-        var commObjListStr = iisWebObj.commObjListStr;
 
-        if (commObjListStr !== "") {
-            var commObjList = JSON.parse(commObjListStr);
-
-            var htmlhead = '<div class="ui-grid-b">';
-            htmlhead += '<div class="ui-block-a" style="width:30%"><strong>Date</strong></div>';
-            htmlhead += '<div class="ui-block-b" style="width:5%"></div>';
-            htmlhead += '<div class="ui-block-c">Msg</div>';
-            htmlhead += '</div>';
-
-            $("#msgid").html('<li id="0" >' + htmlhead + '</li>');
-
-            for (i = 0; i < commObjList.length; i++) {
-                var commObj = commObjList[i];
-                var commId = commObj.id;
-
-                var htmlName = '<div class="ui-grid-b">';
-                htmlName += '<div class="ui-block-a" style="width:30%"><strong>' + commObj.updatedatedisplay + '</strong></div>';
-                htmlName += '<div class="ui-block-b" style="width:5%"> </div>';
-                htmlName += '<div class="ui-block-c">' + commObj.data + '</div>';
-                htmlName += '</div>';
-
-                $("#msgid").append('<li id="' + commId + '" >' + htmlName + '</li>');
-
-            }
-        }
-
-
-        var htmlAdmin = '<button id="configbtn"  >Configuration</button>';
-        htmlAdmin += '<button id="invoicebtn"  >Billing Invoice</button>';
-
+        var htmlAdmin = '<button id="splunkbtn"  >Splunk Analysis</button>';
+        htmlAdmin += '<button id="monitorbtn"  >RealTime Monitor</button>';
+        htmlAdmin += '<button id="regressionbtn"  >QA Regression Testing</button>';
         $("#adminid").html(htmlAdmin);
         if (custObj.type == 99) {
             var htmlAdmin = '<button id="lockbtn" >Lock</button>';
             htmlAdmin += '<button id="serverbtn"  >Server</button>';
-            htmlAdmin += '<button id="admsgbtn"  >Admin Msg</button>';
             $("#adminid").append(htmlAdmin);
         }
 
-        $("#accheader").html("Customer Account");
+        $("#accheader").html("User Account");
 
         $("#myid").html(" "); //clear the field
         for (i = 0; i < accObjList.length; i++) {
             var accObj = accObjList[i];
-            console.log(accObj);
-            var accName = accObj.accountname;
-            var accId = accObj.id;
+         
 
-            var htmlName = '<li id="' + accId + '"><a href="#">Start date: ' + accObj.startdate;
-            htmlName += '<br>Account: ' + accName;
-
-//    public static final String PP_BASIC = "BASIC";
-//    public static final int INT_PP_BASIC = 0;
-//    public static final int INT_PP_BASIC_NUM = 5;
-//    public static final float INT_PP_BASIC_PRICE = 10;
-//    public static final String PP_PREMIUM = "PREMIUM";
-//    public static final int INT_PP_PREMIUM = 10;
-//    public static final int INT_PP_REMIUM_NUM = 10;
-//    public static final float INT_PP_REMIUM_PRICE = 15;
-//    public static final String PP_DELUXE = "DELUXE";
-//    public static final int INT_PP_DELUXE = 20;
-//    public static final int INT_PP_DELUXE_NUM = 20;
-//    public static final float INT_PP_DELUXE_PRICE = 30;            
-            var pp = "Basic Plan - Max 5 stocks"
-            if (custObj.substatus == 0) {
-                pp = "Basic Plan - Max 5 stocks"
-            } else if (custObj.substatus == 10) {
-                pp = "Premium Plan - Max 10 stocks"
-            } else if (custObj.substatus == 20) {
-                pp = "Deluxe Plan - Max 20 stocks"
-            }
-
-            htmlName += '<br>Plan: ' + pp;
-            if (accObj.type == 110) { //INT_TRADING_ACCOUNT
-                htmlName += '<br>Bal: $' + custObj.balance.toFixed(2)
-                        + ' Amount due: $' + custObj.investment.toFixed(2);
-
-            }
-            htmlName += '</a></li>';
+            var htmlName = '<li>WebService Listing</li>';
             $("#myid").append(htmlName);
         }
 

@@ -15,6 +15,8 @@ var app = {
 
 //        var iisurl = "https://iiswebsrv.herokuapp.com/";
         var iisWebSession = "iisWebSession";
+        iisurl = iisurl.replace("abc", "");
+        iisurl = iisurl.replace("abc", "");
 //        var custObj = 'custObj';
 //        var accList = 'accList';
 
@@ -24,6 +26,12 @@ var app = {
             if (keycode == '13') {
                 var txemail = document.getElementById("txt-email").value;
                 var txtpassword = document.getElementById("txt-password").value;
+                if (txemail == "") {
+                    txemail = "guest";
+                }
+                if (txtpassword == "") {
+                    txtpassword = "guest";
+                }
                 $.ajax({
                     url: iisurl + "cust/login?email=" + txemail + "&pass=" + txtpassword,
                     crossDomain: true,

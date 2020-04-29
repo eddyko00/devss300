@@ -10,6 +10,8 @@ var app = {
 
 //        var iisurl = "https://iiswebsrv.herokuapp.com/";
         var iisWebSession = "iisWebSession";
+        iisurl = iisurl.replace("abc", "");
+        iisurl = iisurl.replace("abc", "");
 //        var custObj = 'custObj';
 //        var accList = 'accList';
 
@@ -24,7 +26,7 @@ var app = {
         var custObj = JSON.parse(custObjStr);
 
         $.ajax({
-            url: iisurl + "/cust/" + custObj.username + "/acc/",
+            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id + "/serv",
             crossDomain: true,
             cache: false,
             beforeSend: function () {
@@ -45,44 +47,8 @@ var app = {
                 var accObjListStr = JSON.stringify(resultAccObjList, null, '\t');
                 var iisWebObj = {'custObjStr': custObjStr, 'accObjListStr': accObjListStr};
                 window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
+                window.location.href = "account.html";
 
-//                window.location.href = "account.html";
-                var accObjList = JSON.parse(accObjListStr);
-
-                var accObj = null;
-                for (i = 0; i < accObjList.length; i++) {
-                    var accObjTmp = accObjList[i];
-                    if (accObjTmp.type == 110) { //INT_TRADING_ACCOUNT
-                        accObj = accObjTmp;
-                        break;
-                    }
-                }
-                if (accObj == null) {
-                    window.location.href = "index.html";
-                }
-                $.ajax({
-                    url: iisurl + "/cust/" + custObj.username + "/acc/" + accObj.id + "/comm",
-                    crossDomain: true,
-                    cache: false,
-                    beforeSend: function () {
-                        $("#loader").show();
-                    },
-
-                    success: function (resultCommObjList) {
-                        console.log(resultCommObjList);
-                        if (resultCommObjList !== "") {
-                            var commObjListStr = JSON.stringify(resultCommObjList, null, '\t');
-                            var iisWebObj = {'custObjStr': custObjStr, 'accObjListStr': accObjListStr, 'commObjListStr': commObjListStr};
-                            window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-                            window.location.href = "accountmsg.html";
-                        } else {
-                            var commObjListStr = "";
-                            var iisWebObj = {'custObjStr': custObjStr, 'accObjListStr': accObjListStr, 'commObjListStr': commObjListStr};
-                            window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-                            window.location.href = "account.html";
-                        }
-                    }
-                });
             }
         });
 
