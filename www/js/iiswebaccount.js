@@ -12,7 +12,7 @@ var app = {
 //        var iisurl = "https://iiswebsrv.herokuapp.com/";
         var iisWebSession = "iisWebSession";
         iisurl = iisurl.replace("abc", "");
-        iisurl = iisurl.replace("abc", "");        
+        iisurl = iisurl.replace("abc", "");
 //        var custObj = 'custObj';
 //        var accList = 'accList';
 
@@ -42,15 +42,6 @@ var app = {
         $("#accheader").html("User Account");
 
         $("#myid").html(" "); //clear the field
-        for (i = 0; i < accObjList.length; i++) {
-            var accObj = accObjList[i];
-         
-
-            var htmlName = '<li>WebService Listing</li>';
-            $("#myid").append(htmlName);
-        }
-
-
 
         $("ul[id*=myid] li").click(function () {
 //            alert($(this).html()); // gets innerHTML of clicked li
@@ -68,31 +59,18 @@ var app = {
         });
 
 
-        $("#clrbtn").click(function () {
+        $("#splunkbtn").click(function () {
             var accObjList = JSON.parse(accObjListStr);
-
             var accObj = null;
-            for (i = 0; i < accObjList.length; i++) {
-                var accObjTmp = accObjList[i];
-                if (accObjTmp.type == 110) { //INT_TRADING_ACCOUNT
-                    accObj = accObjTmp;
-                    break;
-                }
+               $("#lockid").html(' ');            
+            for (i = 0; i < accObjList.length; i+=2) {
+                var prodID = accObjList[i];
+                var prodDesc = accObjList[i + 1];
+                 var htmlName = '<h3>' + prodDesc + '</h3>';
+                $("#lockid").append('<li >' + htmlName + '</li>');
             }
-            $.ajax({
-                url: iisurl + "/cust/" + custObj.username + "/acc/" + accObj.id + "/comm/remove",
-                crossDomain: true,
-                cache: false,
-                beforeSend: function () {
-                    $("#loader").show();
-                },
-
-                success: function (result) {
-                    console.log(result);
-                    window.location.href = "account_1.html";
-                }
-            });
-
+            window.location.href = "#page-lock";
+            return;
         });
 
 
