@@ -6,18 +6,6 @@
   "config_munge": {
     "files": {}
   },
-  "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.coolappz.iisweb100"
-    },
-    "cordova-plugin-advanced-http": {
-      "OKHTTP_VERSION": "3.10.0",
-      "PACKAGE_NAME": "com.coolappz.iisweb100"
-    }
-  },
-  "dependent_plugins": {
-    "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.coolappz.iisweb100"
-    }
-  }
+  "installed_plugins": {},
+  "dependent_plugins": {}
 }
