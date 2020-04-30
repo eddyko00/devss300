@@ -8,12 +8,10 @@ var app = {
 
         });
 
-//        var iisurl = "https://iiswebsrv.herokuapp.com/";
         var iisWebSession = "iisWebSession";
         iisurl = iisurl.replace("abc", "");
         iisurl = iisurl.replace("abc", "");
-//        var custObj = 'custObj';
-//        var accList = 'accList';
+
 
         var iisWebObjStr = window.localStorage.getItem(iisWebSession);
         var iisWebObj = JSON.parse(iisWebObjStr);
@@ -24,9 +22,12 @@ var app = {
             window.location.href = "index.html";
         }
         var custObj = JSON.parse(custObjStr);
+        var servObjListStr = iisWebObj.servObjListStr;
+        var servObjList = JSON.parse(servObjListStr);
+        var serv = iisWebObj.serv;
 
         $.ajax({
-            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id + "/serv",
+            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id + "/serv/" + serv + "/featureall",
             crossDomain: true,
             cache: false,
             beforeSend: function () {
@@ -38,16 +39,16 @@ var app = {
                 window.location.href = "index.html";
             },
 
-            success: function (resultAccObjList) {
-                console.log(resultAccObjList);
-                if (resultAccObjList == "") {
+            success: function (resultFeatObjList) {
+                console.log(resultFeatObjList);
+                if (resultFeatObjList == "") {
                     window.location.href = "index.html";
                 }
 
-                var accObjListStr = JSON.stringify(resultAccObjList, null, '\t');
-                var iisWebObj = {'custObjStr': custObjStr, 'accObjListStr': accObjListStr};
+                var featObjListStr = JSON.stringify(resultFeatObjList, null, '\t');
+                var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'featObjListStr': featObjListStr};
                 window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-                window.location.href = "account.html";
+                window.location.href = "splunkserv.html";
 
             }
         });
@@ -55,8 +56,6 @@ var app = {
     },
 };
 app.initialize();
-
-
 
 
 

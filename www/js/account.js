@@ -23,11 +23,8 @@ var app = {
             window.location.href = "index.html";
         }
         var custObj = JSON.parse(custObjStr);
-        var accObjListStr = iisWebObj.accObjListStr;
-        var accObjList = JSON.parse(accObjListStr);
-
-        var htmlhead = "Service Listing";
-        $("#msgid").html('<li id="0" >' + htmlhead + '</li>');
+        var servObjListStr = iisWebObj.servObjListStr;
+        var servObjList = JSON.parse(servObjListStr);
 
         var htmlAdmin = '<button id="splunkbtn"  >Splunk Analyize</button>';
         htmlAdmin += '<button id="monitorbtn"  >RealTime Monitor</button>';
@@ -43,7 +40,7 @@ var app = {
 
 
         $("#splunkbtn").click(function () {
-            var iisWebObj = {'custObjStr': custObjStr, 'accObjListStr': accObjListStr};
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
             window.location.href = "splunkanalyize.html";
             return;

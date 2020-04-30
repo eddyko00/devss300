@@ -13,8 +13,6 @@ var app = {
         var iisWebSession = "iisWebSession";
         iisurl = iisurl.replace("abc", "");
         iisurl = iisurl.replace("abc", "");
-//        var custObj = 'custObj';
-//        var accList = 'accList';
 
 
         var iisWebObjStr = window.localStorage.getItem(iisWebSession);
@@ -26,19 +24,29 @@ var app = {
             window.location.href = "index.html";
         }
         var custObj = JSON.parse(custObjStr);
-        var accObjListStr = iisWebObj.accObjListStr;
-        var accObjList = JSON.parse(accObjListStr);
+        var servObjListStr = iisWebObj.servObjListStr;
+        var servObjList = JSON.parse(servObjListStr);
+        var serv = iisWebObj.serv;
+        var featObjListStr = iisWebObj.featObjListStr;
+        var featObjLis = JSON.parse(featObjListStr);
 
-
+        $("#accheader").html(serv + " Feature");
 
         $("#myid").html(" "); //clear the field
-        for (i = 0; i < accObjList.length; i++) {
-            var accName = accObjList[i + 1];
-            var accId = i;
+        for (i = 0; i < featObjLis.length; i += 2) {
+            var featName = featObjLis[i];
+            var featCnt = featObjLis[i + 1];
+            if (featName == "") {
+                continue;
+            }
+            var objId = i + 10;
+            var htmlName = '<div class="ui-grid-a">';
+            htmlName += '<div class="ui-block-a" style="width:5%">' + featCnt + '</div>';
+            htmlName += '<div class="ui-block-b">' + featName + '</div>';
+            htmlName += '</div>';
+            $("#myid").append('<li id="' + objId + '"><a href="#">' + htmlName + '</a></li>');
 
-            var htmlName = '<li id="' + accId + '"><a href="#">Service: ' + accName;
-              htmlName += '</a></li>';
-            $("#myid").append(htmlName);
+
         }
 
 
@@ -52,10 +60,10 @@ var app = {
 //                alert(accId);
                 return;
             }
-
-            var iisWebObj = {'custObjStr': custObjStr, 'accObjListStr': accObjListStr, 'accId': accId};
+            var serv = accObjList[accId + 10];
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "accountst_1.html";
+            window.location.href = "splunkServ_1.html";
         });
 
 

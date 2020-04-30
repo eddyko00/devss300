@@ -32,6 +32,7 @@ var app = {
                 if (txtpassword == "") {
                     txtpassword = "guest";
                 }
+
                 $.ajax({
                     url: iisurl + "cust/login?email=" + txemail + "&pass=" + txtpassword,
                     crossDomain: true,
@@ -75,7 +76,6 @@ var app = {
             if (txtpassword !== txtpasswordconfirm) {
                 $('#error_message-signup').fadeIn().html("Password does not match with confirmed password. Please try again.");
             }
-//          "/cust/add?email={email}&pass={pass}&firstName={firstName}&lastName={lastName}"
 //          SUCC = 1;  EXISTED = 2; FAIL =0;
             $.ajax({
                 url: iisurl + "/cust/add?email=" + txtemailaddress + "&pass=" + txtpassword + "&firstName=" + txtfirstname + "&lastName=" + txtlastname,
@@ -84,7 +84,6 @@ var app = {
                 success: handleResult
             }); // use promises
 
-            // add cordova progress indicator https://www.npmjs.com/package/cordova-plugin-progress-indicator
 
             function handleResult(result) {
 //          SUCC = 1;  EXISTED = 2; FAIL =0;
@@ -118,6 +117,9 @@ var app = {
                 if (txtpassword == "") {
                     txemail = "GUEST";
                     txtpassword = "guest";
+
+                    txemail = "admin1";
+                    txtpassword = "abc123";
                 }
             }
 
@@ -128,7 +130,6 @@ var app = {
                 success: handleResult
             }); // use promises
 
-            // add cordova progress indicator https://www.npmjs.com/package/cordova-plugin-progress-indicator
 
             function handleResult(result) {
 
@@ -139,10 +140,6 @@ var app = {
                 var iisWebObj = {'custObjStr': custObjStr};
                 window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
 
-//                var iisWebObjStr = window.localStorage.getItem('iisWebSession');
-//                var iisWebObj = JSON.parse(iisWebObjStr);
-//                console.log(iisWebObj);
-
                 if (custObj !== null) {
                     window.location.href = "account_1.html";
                 } else {
@@ -151,11 +148,6 @@ var app = {
                 }
             }
         });
-
-// example        
-//alert("AJAX request successfully completed");
-//var jsonObj = JSON.parse(jsonStr);
-//var jsonPretty = JSON.stringify(jsonObj, null, '\t');
 
     },
 };
