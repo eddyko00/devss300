@@ -27,6 +27,7 @@ var app = {
         var servObjListStr = iisWebObj.servObjListStr;
         var servObjList = JSON.parse(servObjListStr);
 
+        
         $("#myid").html(" "); //clear the field
         for (i = 0; i < servObjList.length; i+=2) {
             var servName = servObjList[i+1];

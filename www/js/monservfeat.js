@@ -57,10 +57,14 @@ var app = {
             var prodDataStr = featObj.data;
             var prodData = JSON.parse(prodDataStr);
             var result = prodData.postParam.split('^').join('"');
-            htmlName += '<br>playload: ' + result;
+            result = result.split('\\').join('');
+            htmlName += '<br>playload:<br>' + result;
+            htmlName += '<br>Detail SOA donwstream:';
             var flowList = prodData.flow;
             for (j = 0; j < flowList.length; j++) {
                 var flow = flowList[j];
+                flow = flow.split('^').join('"');
+                flow = flow.split('\\').join('');
                 htmlName += '<br>' + j + " " + flow;
             }
 //            $("#myid").append('<li id="' + objId + '">' + htmlName + '</li>');
@@ -79,15 +83,26 @@ var app = {
             }
 
             var featObj = featIDObjList[accId - 10];
-            $("#detailid").html("Raw Data:>");
+
+            $("#detailid").html(" ");
+            var htmlName = '<button id="rtbtn" value="' + accId + '" >Real Time Testing</button>';
+            htmlName += "<br>Raw Data:"
             var featObjStr = JSON.stringify(featObj, null, '\t');
             var result = featObjStr.split('^').join('"');
-            var htmlName = result;
+            result = result.split('\\').join('');
+            htmlName += result;
             $("#detailid").append('<li ></li>' + htmlName);
 
             window.location.href = "#page-detail";
         });
 
+        $("#rtbtn").click(function () {
+            var accId = $(this).attr('value')
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'featIDObjListStr': featIDObjListStr, 'accId': accId};
+            window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
+            window.location.href = "monrealtimetest_1.html";
+            return;
+        });
 
 
     },

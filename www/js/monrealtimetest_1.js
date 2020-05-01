@@ -23,12 +23,17 @@ var app = {
         }
         var custObj = JSON.parse(custObjStr);
         var servObjListStr = iisWebObj.servObjListStr;
-        var servObjList = JSON.parse(servObjListStr);      
+        var servObjList = JSON.parse(servObjListStr);
         var serv = iisWebObj.serv;
-        var feat = iisWebObj.feat;
+        var featIDObjListStr = iisWebObj.featIDObjListStr;
+        var featIDObjList = JSON.parse(featIDObjListStr);
+
+        var accId = iisWebObj.accId;
+        var featObj = featIDObjList[accId - 10];
+
         $.ajax({
-            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id + "/serv/" + serv 
-                    + "/feature/name?name="+feat,
+            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id + "/serv/" + serv
+                    + "/feature/name?name=" + feat,
             crossDomain: true,
             cache: false,
             beforeSend: function () {
