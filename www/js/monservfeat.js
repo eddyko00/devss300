@@ -20,7 +20,7 @@ var app = {
         console.log(iisWebObj);
 
         var custObjStr = iisWebObj.custObjStr;
-        if (custObjStr == null) {
+        if (custObjStr === null) {
             window.location.href = "index.html";
         }
         var custObj = JSON.parse(custObjStr);
@@ -30,10 +30,14 @@ var app = {
         var featIDObjListStr = iisWebObj.featIDObjListStr;
         var featIDObjList = JSON.parse(featIDObjListStr);
 
-        var featObj0 = featIDObjList[0];
-        $("#accheader").html(featObj0.name);
+        var featRtObj = null;
 
-        $("#myid").html(" "); //clear the field
+        var featObj0 = featIDObjList[0];
+             $("#accheader").html(serv + " Feature");
+
+
+        $("#myid").html(featObj0.name); //clear the field
+;
         for (i = 0; i < featIDObjList.length; i += 2) {
             var featObj = featIDObjList[i];
 //    private String cusid="";
@@ -77,16 +81,32 @@ var app = {
 //            alert($(this).text()); // gets text contents of clicked li
             var accId = $(this).attr('id');
             console.log(accId);
-            if (accId == 0) {
+            if (accId === 0) {
 //                alert(accId);
                 return;
             }
 
             var featObj = featIDObjList[accId - 10];
-
+            featRtObj = featObj;
+            var prodDataStr = featObj.data;
+            var prodData = JSON.parse(prodDataStr);
+            var cmdList = prodData.cmd;
+            var htmlName = "";
             $("#detailid").html(" ");
-            var htmlName = '<button id="rtbtn" value="' + accId + '" >Real Time Testing</button>';
-            htmlName += "<br>Raw Data:"
+
+            var htmlName = '';
+            $("#detailid").append(htmlName);
+//            if (typeof cmdList !== 'undefined') {
+//                for (j = 0; j < cmdList.length; j += 2) {
+//                    var cmdDesc = cmdList[j];
+//                    var cmdOper = cmdList[j + 1];
+//                    var htmlName = '<li>Test Operation:' + cmdDesc + '</li>';
+//                    $("#detailid").append(htmlName);
+//                }
+//            }
+
+
+            htmlName = "<br>Raw Data:";
             var featObjStr = JSON.stringify(featObj, null, '\t');
             var result = featObjStr.split('^').join('"');
             result = result.split('\\').join('');
@@ -97,15 +117,16 @@ var app = {
         });
 
         $("#rtbtn").click(function () {
-            var accId = $(this).attr('value')
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'featIDObjListStr': featIDObjListStr, 'accId': accId};
+            var featObjId = featRtObj.id;
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'featIDObjListStr': featIDObjListStr, 'featObjId': featObjId};
+
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "monrealtimetest_1.html";
+            window.location.href = "monservfeattest.html";
             return;
         });
 
 
-    },
+    }
 };
 app.initialize();
 

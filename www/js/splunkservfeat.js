@@ -97,7 +97,7 @@ var app = {
 
 
 
-    },
+    }
 };
 app.initialize();
 
