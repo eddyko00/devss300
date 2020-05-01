@@ -20,7 +20,7 @@ var app = {
         console.log(iisWebObj);
 
         var custObjStr = iisWebObj.custObjStr;
-        if (custObjStr == null) {
+        if (custObjStr === null) {
             window.location.href = "index.html";
         }
         var custObj = JSON.parse(custObjStr);
@@ -77,14 +77,14 @@ var app = {
 //            alert($(this).text()); // gets text contents of clicked li
             var accId = $(this).attr('id');
             console.log(accId);
-            if (accId == 0) {
+            if (accId === 0) {
 //                alert(accId);
                 return;
             }
 
             $("#detailid").html(" ");
             var htmlName = '<button id="rtbtn" value="' + accId + '" >Real Time Testing</button>';
-            htmlName += "<br>Raw Data:"
+            htmlName += "<br>Raw Data:";
             var featObjStr = JSON.stringify(featObj, null, '\t');
             var result = featObjStr.split('^').join('"');
             result = result.split('\\').join('');
@@ -94,8 +94,6 @@ var app = {
 
             window.location.href = "#page-detail";
         });
-
-
 
     }
 };

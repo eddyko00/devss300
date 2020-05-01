@@ -18,7 +18,7 @@ var app = {
         console.log(iisWebObj);
 
         var custObjStr = iisWebObj.custObjStr;
-        if (custObjStr == null) {
+        if (custObjStr === null) {
             window.location.href = "index.html";
         }
         var custObj = JSON.parse(custObjStr);
@@ -27,13 +27,12 @@ var app = {
         var serv = iisWebObj.serv;
         var featIDObjListStr = iisWebObj.featIDObjListStr;
         var featIDObjList = JSON.parse(featIDObjListStr);
-
-        var accId = iisWebObj.accId;
-        var featObj = featIDObjList[accId - 10];
-
+        var featObjId = iisWebObj.featObjId;
+        var cmd = iisWebObj.cmd;
+        var iisurllocal = iisurl_LOCAL;
         $.ajax({
-            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id + "/serv/" + serv
-                    + "/feature/name?name=" + feat,
+            url: iisurllocal + "/cust/" + custObj.username + "/id/" + custObj.id + "/serv/" + serv
+                    + "/id/" + featObjId + "/rt/" + cmd,
             crossDomain: true,
             cache: false,
             beforeSend: function () {
@@ -45,18 +44,19 @@ var app = {
                 window.location.href = "index.html";
             },
 
-            success: function (resultFeatIDObjList) {
-                console.log(resultFeatIDObjList);
+            success: function (resultList) {
+//                    console.log(resultListStr);
 
-                var featIDObjListStr = JSON.stringify(resultFeatIDObjList, null, '\t');
-                var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'featIDObjListStr': featIDObjListStr};
+                var resultListStr = JSON.stringify(resultList, null, '\t');
+
+                var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv,
+                    'featIDObjListStr': featIDObjListStr, 'featObjId': featObjId, 'cmd': cmd, 'resultListStr': resultListStr};
                 window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-                window.location.href = "monservfeat.html";
-
+                window.location.href = "monservfeattestres.html";
             }
         });
 
-    },
+    }
 };
 app.initialize();
 

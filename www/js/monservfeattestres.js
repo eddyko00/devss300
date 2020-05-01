@@ -24,6 +24,10 @@ var app = {
         var featIDObjListStr = iisWebObj.featIDObjListStr;
         var featIDObjList = JSON.parse(featIDObjListStr);
         var featObjId = iisWebObj.featObjId;
+        var cmd = iisWebObj.cmd;
+        var resultListStr = iisWebObj.resultListStr;
+        var resultList = JSON.parse(resultListStr);
+
         var featObj = featIDObjList[0];
         for (i = 0; i < featIDObjList.length; i += 2) {
             featObj = featIDObjList[i];
@@ -32,19 +36,13 @@ var app = {
             }
         }
 
-        $("#accheader").html("Real time Testing");
-        var prodDataStr = featObj.data;
-        var prodData = JSON.parse(prodDataStr);
-        var cmdList = prodData.cmd;
+        $("#accheader").html("Testing output");
+
         var htmlName = "";
         $("#myid").html(" "); //clear the field
-        if (typeof cmdList !== 'undefined') {
-            for (j = 0; j < cmdList.length; j += 2) {
-                var cmdDesc = cmdList[j];
-                var cmdOper = cmdList[j + 1];
-                var objId = i + 10;
-                var htmlName = 'Test Operation:' + cmdDesc;
-                $("#myid").append('<li id="' + objId + '" value ="' + cmdOper + '"><a href="#">' + htmlName + '</a></li>');
+        if (typeof resultList !== 'undefined') {
+            for (j = 0; j < resultList.length; j ++) {
+                $("#myid").append('<li >' + resultList[j] + '</li>');
             }
         }
 
@@ -69,7 +67,7 @@ var app = {
                 , 'featIDObjListStr': featIDObjListStr, 'featObjId': featObjId, 'cmd': cmd};
 
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "monservfeattestres_1.html";
+            window.location.href = "monServFeat_1.html";
         }
         );
 

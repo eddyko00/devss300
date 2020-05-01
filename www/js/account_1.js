@@ -18,7 +18,7 @@ var app = {
         console.log(iisWebObj);
 
         var custObjStr = iisWebObj.custObjStr;
-        if (custObjStr == null) {
+        if (typeof custObjStr === null) {
             window.location.href = "index.html";
         }
         var custObj = JSON.parse(custObjStr);
@@ -38,7 +38,7 @@ var app = {
 
             success: function (resultAccObjList) {
                 console.log(resultAccObjList);
-                if (resultAccObjList == "") {
+                if (resultAccObjList === "") {
                     window.location.href = "index.html";
                 }
 
@@ -50,7 +50,7 @@ var app = {
             }
         });
 
-    },
+    }
 };
 app.initialize();
 

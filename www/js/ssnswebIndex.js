@@ -5,13 +5,8 @@ var app = {
     initialize: function () {
 
         $(document).ready(function () {
-            // after the page elements are all loaded, then run the script
-            // Set the input field with unique ID #email to a value
-//            $("#txt-email").val('GUEST');
-//            $("#txt-password").val('guest');
 
         });
-
 
 //        var iisurl = "https://iiswebsrv.herokuapp.com/";
         var iisWebSession = "iisWebSession";
@@ -26,10 +21,10 @@ var app = {
             if (keycode == '13') {
                 var txemail = document.getElementById("txt-email").value;
                 var txtpassword = document.getElementById("txt-password").value;
-                if (txemail == "") {
+                if (txemail === "") {
                     txemail = "guest";
                 }
-                if (txtpassword == "") {
+                if (txtpassword === "") {
                     txtpassword = "guest";
                 }
 
@@ -90,14 +85,14 @@ var app = {
                 var webMsg = result.webMsg;
                 console.log(webMsg);
                 var resultID = webMsg.resultID;
-                if (resultID == 1) {
+                if (resultID === 1) {
                     $("#txt-email").val(txtemailaddress);
                     // Set the input field with unique ID #name
                     $("#txt-password").val(txtpassword);
                     window.location.href = "#page-signup-succeeded";
                 } else {
                     var errorM = "Please try again.";
-                    if (resultID == 2) {
+                    if (resultID === 2) {
                         var errorM = "The customer account has already existed. Please try again.";
                     }
                     $('#error_message-signup').fadeIn().html(errorM);
@@ -113,8 +108,8 @@ var app = {
             var txemail = document.getElementById("txt-email").value;
             var txtpassword = document.getElementById("txt-password").value;
 
-            if (txemail == "") {
-                if (txtpassword == "") {
+            if (txemail === "") {
+                if (txtpassword === "") {
                     txemail = "GUEST";
                     txtpassword = "guest";
 
@@ -149,7 +144,7 @@ var app = {
             }
         });
 
-    },
+    }
 };
 app.initialize();
 

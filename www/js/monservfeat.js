@@ -8,8 +8,6 @@ var app = {
 
         });
 
-
-
         var iisWebSession = "iisWebSession";
         iisurl = iisurl.replace("abc", "");
         iisurl = iisurl.replace("abc", "");
@@ -33,11 +31,11 @@ var app = {
         var featRtObj = null;
 
         var featObj0 = featIDObjList[0];
-             $("#accheader").html(serv + " Feature");
+        $("#accheader").html(serv + " Feature");
 
 
         $("#myid").html(featObj0.name); //clear the field
-;
+        ;
         for (i = 0; i < featIDObjList.length; i += 2) {
             var featObj = featIDObjList[i];
 //    private String cusid="";

@@ -8,8 +8,6 @@ var app = {
 
         });
 
-
-
         var iisWebSession = "iisWebSession";
         iisurl = iisurl.replace("abc", "");
         iisurl = iisurl.replace("abc", "");
@@ -20,7 +18,7 @@ var app = {
         console.log(iisWebObj);
 
         var custObjStr = iisWebObj.custObjStr;
-        if (custObjStr == null) {
+        if (typeof custObjStr === null) {
             window.location.href = "index.html";
         }
         var custObj = JSON.parse(custObjStr);
@@ -36,7 +34,7 @@ var app = {
         for (i = 0; i < featObjList.length; i += 2) {
             var featName = featObjList[i];
             var featCnt = featObjList[i + 1];
-            if (featName == "") {
+            if (featName === "") {
                 continue;
             }
             var objId = i + 10;
@@ -52,19 +50,19 @@ var app = {
 //            alert($(this).text()); // gets text contents of clicked li
             var accId = $(this).attr('id');
             console.log(accId);
-            if (accId == 0) {
+            if (accId === 0) {
 //                alert(accId);
                 return;
             }
             var feat = featObjList[accId - 10];
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'feat': feat};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "monServFeat_1.html";
+            window.location.href = "monservfeat_1.html";
         });
 
 
 
-    },
+    }
 };
 app.initialize();
 
