@@ -96,15 +96,6 @@ var app = {
 
             var htmlName = '';
             $("#detailid").append(htmlName);
-//            if (typeof cmdList !== 'undefined') {
-//                for (j = 0; j < cmdList.length; j += 2) {
-//                    var cmdDesc = cmdList[j];
-//                    var cmdOper = cmdList[j + 1];
-//                    var htmlName = '<li>Test Operation:' + cmdDesc + '</li>';
-//                    $("#detailid").append(htmlName);
-//                }
-//            }
-
 
             htmlName = "<br>Raw Data:";
             var featObjStr = JSON.stringify(featObj, null, '\t');

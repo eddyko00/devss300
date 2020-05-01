@@ -43,9 +43,9 @@ var app = {
                 var cmdDesc = cmdList[j];
                 var cmdOper = cmdList[j + 1];
                 var objId = i + 10;
-                var htmlName = 'Test Operation:' + cmdDesc ;
+                var htmlName = 'Test Operation:' + cmdDesc;
 
-                $("#myid").append('<li id="' + objId + ' value ="' + cmdOper + '"><a href="#">' + htmlName + '</a></li>');
+                $("#myid").append('<li id="' + objId + '" value ="' + cmdOper + '"><a href="#">' + htmlName + '</a></li>');
             }
         }
 
@@ -63,28 +63,36 @@ var app = {
             var prodDataStr = featObj.data;
             var prodData = JSON.parse(prodDataStr);
             var cmdList = prodData.cmd;
-            var htmlName = "";
-            $("#detailid").html(" ");
-            if (typeof cmdList !== 'undefined') {
-                for (j = 0; j < cmdList.length; j += 2) {
-                    var cmdDesc = cmdList[j];
-                    var cmdOper = cmdList[j + 1];
-                    var htmlName = '<button id="cmd' + j + '" value="' + accId + '" ><a href="#">Test Operation:' + cmdDesc + '</a></button>';
-//                    var htmlName = '<li id="' + j + '" value="' + accId + '" oper="' + cmdOper + '" ><a href="#">Test Operation:' + cmdDesc + '</a></li>';
-///                    var htmlName = '<button id="' + j + '" value="' + accId + '" oper="' + cmdOper + '" ><a href="#">Test Operation:' + cmdDesc + '</a></button>';
+            var cmd = cmdList[accId - 10 + 1];
+            cmd = cmd.toLowerCase();
+            var iisurllocal = iisurl_LOCAL;
+            $.ajax({
+                url: iisurllocal + "/cust/" + custObj.username + "/id/" + custObj.id + "/serv/" + serv
+                        + "/id/" + featObj.id + "/rt/" + cmd,
+                crossDomain: true,
+                cache: false,
+                beforeSend: function () {
+                    $("#loader").show();
+                },
 
-                    $("#detailid").append(htmlName);
+                error: function () {
+                    alert('network failure');
+                    window.location.href = "index.html";
+                },
+
+                success: function (resultList) {
+//                    console.log(resultListStr);
+                    var htmlName = "";
+                    $("#detailid").html(" ");
+                    if (typeof resultList !== 'undefined') {
+                        for (j = 0; j < resultList.length; j += 2) {
+                            $("#detailid").append('<li >' + resultList[j] + '</li>');
+                        }
+                    }
+                    window.location.href = "#page-detail";
+
                 }
-            }
-
-
-            htmlName = "<br>Raw Data:";
-            var featObjStr = JSON.stringify(featObj, null, '\t');
-            var result = featObjStr.split('^').join('"');
-            result = result.split('\\').join('');
-            htmlName += result;
-            $("#detailid").append('<li ></li>' + htmlName);
-            window.location.href = "#page-detail";
+            });
         });
         $("#rtbtn").click(function () {
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr};
