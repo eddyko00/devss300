@@ -39,12 +39,20 @@ var app = {
         $("#accheader").html("User Account");
 
 
+        $("#monitorbtn").click(function () {
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr};
+            window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
+            window.location.href = "monanalyize.html";
+            return;
+        });
+
         $("#splunkbtn").click(function () {
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
             window.location.href = "splunkanalyize.html";
             return;
         });
+
 
         $("#lockbtn").click(function () {
 
