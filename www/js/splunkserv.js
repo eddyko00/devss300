@@ -28,14 +28,14 @@ var app = {
         var servObjList = JSON.parse(servObjListStr);
         var serv = iisWebObj.serv;
         var featObjListStr = iisWebObj.featObjListStr;
-        var featObjLis = JSON.parse(featObjListStr);
+        var featObjList = JSON.parse(featObjListStr);
 
         $("#accheader").html(serv + " Feature");
 
         $("#myid").html(" "); //clear the field
-        for (i = 0; i < featObjLis.length; i += 2) {
-            var featName = featObjLis[i];
-            var featCnt = featObjLis[i + 1];
+        for (i = 0; i < featObjList.length; i += 2) {
+            var featName = featObjList[i];
+            var featCnt = featObjList[i + 1];
             if (featName == "") {
                 continue;
             }
@@ -56,10 +56,10 @@ var app = {
 //                alert(accId);
                 return;
             }
-            var serv = accObjList[accId + 10];
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv};
+            var feat = featObjList[accId - 10];
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'feat': feat};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "splunkServ_1.html";
+            window.location.href = "splunkServFeat_1.html";
         });
 
 
