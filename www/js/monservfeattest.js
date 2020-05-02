@@ -64,7 +64,6 @@ var app = {
             var cmdList = prodData.cmd;
             var cmd = cmdList[accId - 10 + 1];
             cmd = cmd.toLowerCase();
-
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv
                 , 'featIDObjListStr': featIDObjListStr, 'featObjId': featObjId, 'cmd': cmd};
 

@@ -8,8 +8,6 @@ var app = {
 
         });
 
-
-
         var iisWebSession = "iisWebSession";
         iisurl = iisurl.replace("abc", "");
         iisurl = iisurl.replace("abc", "");

@@ -41,35 +41,10 @@ var app = {
         var htmlName = "";
         $("#myid").html(" "); //clear the field
         if (typeof resultList !== 'undefined') {
-            for (j = 0; j < resultList.length; j ++) {
+            for (j = 0; j < resultList.length; j++) {
                 $("#myid").append('<li >' + resultList[j] + '</li>');
             }
         }
-
-        $("ul[id*=myid] li").click(function () {
-//            alert($(this).html()); // gets innerHTML of clicked li
-//            alert($(this).text()); // gets text contents of clicked li
-            var accId = $(this).attr('id');
-            console.log(accId);
-            if (accId === 0) {
-//                alert(accId);
-                return;
-            }
-
-            var featObj = featIDObjList[accId - 10];
-            var prodDataStr = featObj.data;
-            var prodData = JSON.parse(prodDataStr);
-            var cmdList = prodData.cmd;
-            var cmd = cmdList[accId - 10 + 1];
-            cmd = cmd.toLowerCase();
-
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv
-                , 'featIDObjListStr': featIDObjListStr, 'featObjId': featObjId, 'cmd': cmd};
-
-            window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "monServFeat_1.html";
-        }
-        );
 
     }
 };

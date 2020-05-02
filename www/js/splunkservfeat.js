@@ -31,9 +31,10 @@ var app = {
         var featIDObjList = JSON.parse(featIDObjListStr);
 
         var featObj0 = featIDObjList[0];
-        $("#accheader").html(featObj0.name);
+        $("#accheader").html("splunk (" + serv + ") Feature");
 
-        $("#myid").html(" "); //clear the field
+       $("#myid").html(featObj0.name); //clear the field
+       
         for (i = 0; i < featIDObjList.length; i += 2) {
             var featObj = featIDObjList[i];
 //    private String cusid="";
@@ -83,7 +84,7 @@ var app = {
             }
 
             $("#detailid").html(" ");
-            var htmlName = '<button id="rtbtn" value="' + accId + '" >Real Time Testing</button>';
+            var htmlName = '<li >Splunk Result</li>';
             htmlName += "<br>Raw Data:";
             var featObjStr = JSON.stringify(featObj, null, '\t');
             var result = featObjStr.split('^').join('"');

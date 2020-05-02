@@ -48,7 +48,6 @@ var app = {
 //                    console.log(resultListStr);
 
                 var resultListStr = JSON.stringify(resultList, null, '\t');
-
                 var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv,
                     'featIDObjListStr': featIDObjListStr, 'featObjId': featObjId, 'cmd': cmd, 'resultListStr': resultListStr};
                 window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));

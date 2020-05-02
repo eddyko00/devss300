@@ -31,11 +31,10 @@ var app = {
         var featRtObj = null;
 
         var featObj0 = featIDObjList[0];
-        $("#accheader").html(serv + " Feature");
-
+        $("#accheader").html("Mon (" + serv + ") Feature");
 
         $("#myid").html(featObj0.name); //clear the field
-        ;
+      
         for (i = 0; i < featIDObjList.length; i += 2) {
             var featObj = featIDObjList[i];
 //    private String cusid="";
@@ -107,7 +106,9 @@ var app = {
 
         $("#rtbtn").click(function () {
             var featObjId = featRtObj.id;
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'featIDObjListStr': featIDObjListStr, 'featObjId': featObjId};
+        
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv,
+                'featIDObjListStr': featIDObjListStr, 'featObjId': featObjId};
 
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
             window.location.href = "monservfeattest.html";

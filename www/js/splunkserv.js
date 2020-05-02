@@ -28,7 +28,7 @@ var app = {
         var featObjListStr = iisWebObj.featObjListStr;
         var featObjList = JSON.parse(featObjListStr);
 
-        $("#accheader").html(serv + " Feature");
+        $("#accheader").html("Splunk ("+ serv + ") Feature");
 
         $("#myid").html(" "); //clear the field
         for (i = 0; i < featObjList.length; i += 2) {
