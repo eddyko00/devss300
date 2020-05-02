@@ -62,7 +62,8 @@ var app = {
                     window.location.href = "index.html";
                 }
 
-                var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr};
+                var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 
+                    'serv': serv, 'resultMonObjListStr': resultMonObjListStr};
                 window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
                 window.location.href = "regmonitor_1.html";
 
