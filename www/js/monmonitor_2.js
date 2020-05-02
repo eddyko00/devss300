@@ -43,6 +43,7 @@ var app = {
 
             success: function (resultObjList) {
 //                console.log(resultMonObjList);
+                alert ("Return Status " + resultObjList);
                 if (resultObjList === null) {
                     window.location.href = "index.html";
                 }

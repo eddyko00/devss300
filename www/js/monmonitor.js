@@ -57,21 +57,48 @@ var app = {
             var objId = $(this).attr('id');
             console.log(objId);
             if (objId === 0) {
-//                alert(accId);
                 return;
             }
             var monObj = resultMonObjList[objId - 10];
             $("#detailid").html('');
             var prodDataStr = monObj.data;
             if (typeof prodDataStr !== 'undefined') {
-                var prodData = JSON.parse(prodDataStr);
+                if (prodDataStr !== "") {
+                    var prodData = JSON.parse(prodDataStr);
+                    if (monObj.uid === 'user') {
+                        var repList = prodData.reportList;
+                        for (j = 0; j < repList.length; j++) {
+                            var report = repList[j];
+                            if (j === 0) {
+                                var htmlName = '<li id="' + objId + '">' + report;
+                                htmlName += '</li>';
+                                $("#detailid").append(htmlName);
+                                continue;
+                            }
+                            var res = report.split(",");
 
-                var repList = prodData.reportList;
-                for (j = 0; j < repList.length; j++) {
-                    var report = repList[j];
-                    $("#detailid").append('<li>' + report + '</li>');
+                            var htmlSt = '<div class="ui-grid-c">';
+                            htmlSt += '<div class="ui-block-a">' + res[0] + '</div>';
+                            htmlSt += '<div class="ui-block-b">' + res[2] + ' ' + res[3] + '</div>';
+                            htmlSt += '<div class="ui-block-c">' + res[4] + ' ' + res[5] + '</div>';
+                            var exec = res[7];
+                            exec = exec / 1000;
+                            var execSt = exec.toFixed(2) + ' sec';
+                            htmlSt += '<div class="ui-block-d">' + execSt + '</div>';
+                            htmlSt += '</div>';
+                            var htmlName = '<li id="' + objId + '">' + htmlSt;
+                            htmlName += '</li>';
+                            $("#detailid").append(htmlName);
+
+                        }
+                    } else {
+                        var repList = prodData.reportList;
+                        for (j = 0; j < repList.length; j++) {
+                            var report = repList[j];
+                            $("#detailid").append('<li>' + report + '</li>');
+                        }
+                    }
                 }
-
             }
             window.location.href = "#page-detail";
 
@@ -87,7 +114,7 @@ var app = {
 
         $("#startbtn").click(function () {
             var monCmd = 'start';
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'monCmd': monCmd};
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'monCmd': monCmd};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
             window.location.href = "monmonitor_2.html";
             return;
