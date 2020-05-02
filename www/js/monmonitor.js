@@ -30,7 +30,6 @@ var app = {
             $("#myid").html(" "); //clear the field
             for (i = 0; i < resultMonObjList.length; i++) {
                 var monObj = resultMonObjList[i];
-
                 var objId = i + 10;
                 var htmlSt = '<div class="ui-grid-b">';
                 htmlSt += '<div class="ui-block-a" style="width:10%" >' + monObj.uid + '</div>';
@@ -44,6 +43,32 @@ var app = {
                 var htmlName = '<li id="' + objId + '"><a href="#">' + htmlSt;
                 htmlName += '</a></li>';
                 $("#myid").append(htmlName);
+                if (monObj.uid === 'user') {
+                    var prodDataStr = monObj.data;
+                    var prodData = JSON.parse(prodDataStr);
+                    var repList = prodData.reportList;
+                    for (j = 0; j < repList.length; j++) {
+                        var report = repList[j];
+//                        if (j === 0) {
+//                            continue;
+//                        }
+                        var res = report.split(",");
+
+                        var htmlSt = '<div class="ui-grid-c">';
+                        htmlSt += '<div class="ui-block-a">' + res[0] + '</div>';
+                        htmlSt += '<div class="ui-block-b">' + res[2] + ' ' + res[3] + '</div>';
+                        htmlSt += '<div class="ui-block-c">' + res[4] + ' ' + res[5] + '</div>';
+                        var exec = res[7];
+                        exec = exec / 1000;
+                        var execSt = exec.toFixed(2) + ' sec';
+                        htmlSt += '<div class="ui-block-d">' + execSt + '</div>';
+                        htmlSt += '</div>';
+                        var htmlName = '<li id="' + objId + '">' + htmlSt;
+                        htmlName += '</li>';
+                        $("#myid").append(htmlName);
+
+                    }
+                }
             }
         } else {
             $("#myid").html("No report running ");
@@ -66,37 +91,46 @@ var app = {
                 if (prodDataStr !== "") {
                     var prodData = JSON.parse(prodDataStr);
                     if (monObj.uid === 'user') {
-                        var repList = prodData.reportList;
-                        for (j = 0; j < repList.length; j++) {
-                            var report = repList[j];
-                            if (j === 0) {
-                                var htmlName = '<li id="' + objId + '">' + report;
-                                htmlName += '</li>';
-                                $("#detailid").append(htmlName);
-                                continue;
-                            }
-                            var res = report.split(",");
-
-                            var htmlSt = '<div class="ui-grid-c">';
-                            htmlSt += '<div class="ui-block-a">' + res[0] + '</div>';
-                            htmlSt += '<div class="ui-block-b">' + res[2] + ' ' + res[3] + '</div>';
-                            htmlSt += '<div class="ui-block-c">' + res[4] + ' ' + res[5] + '</div>';
-                            var exec = res[7];
-                            exec = exec / 1000;
-                            var execSt = exec.toFixed(2) + ' sec';
-                            htmlSt += '<div class="ui-block-d">' + execSt + '</div>';
-                            htmlSt += '</div>';
-                            var htmlName = '<li id="' + objId + '">' + htmlSt;
-                            htmlName += '</li>';
-                            $("#detailid").append(htmlName);
-
-                        }
-                    } else {
-                        var repList = prodData.reportList;
+                        var repList = prodData.featList;
                         for (j = 0; j < repList.length; j++) {
                             var report = repList[j];
                             $("#detailid").append('<li>' + report + '</li>');
                         }
+                    } else {
+                        var repId = objId - 10;
+                        var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'repId': repId};
+                        window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
+                        window.location.href = "monmonitortc.html";
+                        return;
+//                        var repList = prodData.reportList;
+//                        for (j = 0; j < repList.length; j++) {
+//                            var report = repList[j];
+//                            var res = report.split(",");
+//                            if (isNaN(res[0])) {
+//                                var report = repList[j];
+//                                $("#detailid").append('<li>' + report + '</li>');
+//                                continue;
+//                            }
+//
+//                            if (res.length <= 5) {
+//                                var report = repList[j];
+//                                $("#detailid").append('<li>' + report + '</li>');
+//                                continue;
+//                            }
+//                            var namep = res[4].split(":");
+//                            var pas = namep[namep.length - 1];
+//                            var htmlSt = '<div class="ui-grid-b">';
+//                            htmlSt += '<div class="ui-block-a" style="width:10%">' + pas + '</div>';
+//                            var exec = res[5];
+//                            exec = exec / 1000;
+//                            var execSt = exec.toFixed(2) + ' sec';
+//                            htmlSt += '<div class="ui-block-b" style="width:10%">' + execSt + '</div>';
+//                            htmlSt += '<div class="ui-block-c">' + res[4] + '</div>';
+//                            htmlSt += '</div>';
+//                            var htmlName = '<li id="' + objId + '">' + htmlSt;
+//                            htmlName += '</li>';
+//                            $("#detailid").append(htmlName);
+//                        }
                     }
                 }
             }
