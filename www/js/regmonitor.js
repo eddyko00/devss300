@@ -27,7 +27,7 @@ var app = {
         var serv = iisWebObj.serv;
         var resultMonObjListStr = iisWebObj.resultMonObjListStr;
         var resultMonObjList = JSON.parse(resultMonObjListStr);
-        $("#myid").html("<h4>Regresion test on " + serv +"</h4>"); //clear the field
+        $("#myid").html("<h4>Regresion test on " + serv + "</h4>"); //clear the field
         if (resultMonObjList !== null) {
             for (i = 0; i < resultMonObjList.length; i++) {
                 var monObj = resultMonObjList[i];
@@ -50,9 +50,9 @@ var app = {
                     var repList = prodData.reportList;
                     for (j = 0; j < repList.length; j++) {
                         var report = repList[j];
-//                        if (j === 0) {
-//                            continue;
-//                        }
+                        if (j === 0) {
+                            continue;
+                        }
                         var res = report.split(",");
 
                         var htmlSt = '<div class="ui-grid-c">';
@@ -99,9 +99,10 @@ var app = {
                         }
                     } else {
                         var repId = objId - 10;
-                        var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'repId': repId};
+                        var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr,
+                            'serv': serv, 'resultMonObjListStr': resultMonObjListStr, 'repId': repId};
                         window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-                        window.location.href = "monmonitortc.html";
+                        window.location.href = "regmonitortc.html";
                         return;
                     }
                 }
@@ -112,17 +113,21 @@ var app = {
 
         $("#stopbtn").click(function () {
             var monCmd = 'stop';
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'monCmd': monCmd};
+            var url = 'locallab';
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,
+                'serv': serv, 'monCmd': monCmd, 'url': url};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "monmonitor_2.html";
+            window.location.href = "regmonitor_2.html";
             return;
         });
 
         $("#startbtn").click(function () {
             var monCmd = 'start';
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'monCmd': monCmd};
+            var url = 'locallab';
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,
+                'serv': serv, 'monCmd': monCmd, 'url': url};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "monmonitor_2.html";
+            window.location.href = "regmonitor_2.html";
             return;
         });
 

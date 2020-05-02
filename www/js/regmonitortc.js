@@ -26,6 +26,7 @@ var app = {
         var servObjList = JSON.parse(servObjListStr);
         var resultMonObjListStr = iisWebObj.resultMonObjListStr;
         var resultMonObjList = JSON.parse(resultMonObjListStr);
+        var serv = iisWebObj.serv;        
         var repId = iisWebObj.repId;
         var reportTCList = null;
 
@@ -133,7 +134,6 @@ var app = {
             window.location.href = "#page-detail";
 
         });
-
 
     }
 };
