@@ -52,6 +52,14 @@ var app = {
             window.location.href = "monserv_1.html";
         });
 
+        $("#monbtn").click(function () {
+         
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr};
+            window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
+            window.location.href = "monmonitor_1.html";
+            return;
+        });
+
 
 
     }
