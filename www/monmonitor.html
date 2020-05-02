@@ -62,11 +62,28 @@
                 <a href="#page-lock" class="ui-btn ui-btn-b ui-corner-all">lock</a>
                 -->
                 <p id="adminid"></p>
-                <button id="stopbtn" >Stop Monitor</button>
+                <button id="startbtn" >Start Monitor</button>                
                 <br>
-                <button id="startbtn" >Start Monitor</button>
+                <button id="stopbtn" >Stop Monitor</button>
             </div>
         </div>
+
+
+        <div data-role="page" id="page-detail">
+            <div data-role="header" data-theme="c" data-position="fixed">
+                <a href="#page-index" data-icon="back" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+                <h1>SSNS DevOp System</h1>
+            </div><!-- /header -->     
+            <h2 id="detailheader" class="mc-text-center">Detail Feature</h2>
+            <p></p>
+            <div data-role="content" id="textcontent">
+
+                <ul id="detailid" data-role="listview" data-theme="d" data-divider-theme="d">
+                    <li id="0">Monitor Detail</li>                    
+                </ul> 
+
+            </div>          
+        </div>  
 
 
         <script src="lib/jquery/2.1.1/jquery-2.1.1.min.js"></script>

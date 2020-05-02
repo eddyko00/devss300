@@ -31,7 +31,7 @@ var app = {
         htmlAdmin += '<button id="regressionbtn"  >QA Regression Testing</button>';
         $("#adminid").html(htmlAdmin);
         if (custObj.type == 99) {
-            var htmlAdmin = '<button id="lockbtn" >Lock</button>';
+            var htmlAdmin = '<br><br><button id="lockbtn" >Lock</button>';
             htmlAdmin += '<button id="serverbtn"  >Server</button>';
             $("#adminid").append(htmlAdmin);
         }

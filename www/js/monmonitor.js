@@ -54,16 +54,27 @@ var app = {
         $("ul[id*=myid] li").click(function () {
 //            alert($(this).html()); // gets innerHTML of clicked li
 //            alert($(this).text()); // gets text contents of clicked li
-            var accId = $(this).attr('id');
-            console.log(accId);
-            if (accId === 0) {
+            var objId = $(this).attr('id');
+            console.log(objId);
+            if (objId === 0) {
 //                alert(accId);
                 return;
             }
-            var serv = servObjList[accId - 10];
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv};
-            window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "monserv_1.html";
+            var monObj = resultMonObjList[objId - 10];
+            $("#detailid").html('');
+            var prodDataStr = monObj.data;
+            if (typeof prodDataStr !== 'undefined') {
+                var prodData = JSON.parse(prodDataStr);
+
+                var repList = prodData.reportList;
+                for (j = 0; j < repList.length; j++) {
+                    var report = repList[j];
+                    $("#detailid").append('<li>' + report + '</li>');
+                }
+
+            }
+            window.location.href = "#page-detail";
+
         });
 
         $("#stopbtn").click(function () {
