@@ -26,7 +26,7 @@ var app = {
         var servObjList = JSON.parse(servObjListStr);
         var resultMonObjListStr = iisWebObj.resultMonObjListStr;
         var resultMonObjList = JSON.parse(resultMonObjListStr);
-        var serv = iisWebObj.serv;        
+        var serv = iisWebObj.serv;
         var repId = iisWebObj.repId;
         var reportTCList = null;
 
@@ -68,7 +68,7 @@ var app = {
                         exec = exec / 1000;
                         var execSt = exec.toFixed(2) + ' sec';
                         htmlSt += '<div class="ui-block-b" style="width:10%">' + execSt + '</div>';
-                        htmlSt += '<div class="ui-block-c">' + res[4] + '</div>';
+                        htmlSt += '<div class="ui-block-c">' + res[0] + " " + res[4] + '</div>';
                         htmlSt += '</div>';
                         var htmlName = '<li id="' + objId + '"><a href="#">' + htmlSt;
                         htmlName += '</a></li>';
@@ -122,11 +122,31 @@ var app = {
                     var prodDataStr = resultObj.data;
                     var prodData = JSON.parse(prodDataStr);
                     var repList = prodData.flow;
-
-                    for (j = 0; j < repList.length; j++) {
+                    var regressList = prodData.detailResp;
+                    var repListSize = repList.length;
+                    var regressListSize = regressList.length;
+                    var ListSize = repListSize;
+                    if (regressListSize > repListSize) {
+                        ListSize = regressListSize;
+                    }
+                    for (j = 0; j < ListSize; j++) {
                         var report = repList[j];
-                        report = report.split('^').join('"');
-                        $("#detailid").append('<li>' + report + '</li>');
+                        if (typeof (report) === "undefined") {
+                            report = "";
+                        } else {
+                            report = report.split('^').join('"');
+                        }
+                        var regress = regressList[j];
+                        if (typeof (regress) === "undefined") {
+                            regress = "";
+                        } else {
+                            regress = regress.split('^').join('"');
+                        }
+                        var htmlSt = '<div class="ui-grid-a">';
+                        htmlSt += '<div class="ui-block-a" style="width:50%" >' + report + '</div>';
+                        htmlSt += '<div class="ui-block-b" style="width:50%" >' + regress + '</div>';
+
+                        $("#detailid").append('<li>' + htmlSt + '</li>');
                     }
                 }
             });

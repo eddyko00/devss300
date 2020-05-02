@@ -50,9 +50,9 @@ var app = {
                     var repList = prodData.reportList;
                     for (j = 0; j < repList.length; j++) {
                         var report = repList[j];
-                        if (j === 0) {
-                            continue;
-                        }
+//                        if (j === 0) {
+//                            continue;
+//                        }
                         var res = report.split(",");
 
                         var htmlSt = '<div class="ui-grid-c">';
