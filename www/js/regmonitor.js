@@ -24,9 +24,10 @@ var app = {
         var custObj = JSON.parse(custObjStr);
         var servObjListStr = iisWebObj.servObjListStr;
         var servObjList = JSON.parse(servObjListStr);
+        var serv = iisWebObj.serv;
         var resultMonObjListStr = iisWebObj.resultMonObjListStr;
         var resultMonObjList = JSON.parse(resultMonObjListStr);
-        $("#myid").html("<h4>Monitor all services </h4>"); //clear the field        
+        $("#myid").html("<h4>Regresion test on " + serv +"</h4>"); //clear the field
         if (resultMonObjList !== null) {
             for (i = 0; i < resultMonObjList.length; i++) {
                 var monObj = resultMonObjList[i];

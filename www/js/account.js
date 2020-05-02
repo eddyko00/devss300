@@ -53,6 +53,13 @@ var app = {
             return;
         });
 
+        $("#regressionbtn").click(function () {
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr};
+            window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
+            window.location.href = "reganalyize.html";
+            return;
+        });
+
 
         $("#lockbtn").click(function () {
 

@@ -112,9 +112,12 @@ var app = {
                 if (txtpassword === "") {
                     txemail = "GUEST";
                     txtpassword = "guest";
-
-                    txemail = "admin1";
-                    txtpassword = "abc123";
+                    
+                    txemail = "eddy";
+                    txtpassword = "pass";
+                    
+//                    txemail = "admin1";
+//                    txtpassword = "abc123";
                 }
             }
 
