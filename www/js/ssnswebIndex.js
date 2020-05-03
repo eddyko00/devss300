@@ -46,10 +46,6 @@ var app = {
                     var iisWebObj = {'custObjStr': custObjStr};
                     window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
 
-//                var iisWebObjStr = window.localStorage.getItem('iisWebSession');
-//                var iisWebObj = JSON.parse(iisWebObjStr);
-//                console.log(iisWebObj);
-
                     if (custObj !== null) {
                         window.location.href = "account_1.html";
                     } else {
@@ -113,11 +109,6 @@ var app = {
                     txemail = "GUEST";
                     txtpassword = "guest";
                     
-                    txemail = "eddy";
-                    txtpassword = "pass";
-                    
-//                    txemail = "admin1";
-//                    txtpassword = "abc123";
                 }
             }
 
