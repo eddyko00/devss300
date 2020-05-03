@@ -49,11 +49,11 @@ var app = {
                     var repList = prodData.reportList;
                     for (j = 0; j < repList.length; j++) {
                         var report = repList[j];
-//                        if (j === 0) {
-//                            continue;
-//                        }
                         var res = report.split(",");
-
+                        if (res.length < 5) {
+//                            $("#myid").append(report);
+                            continue;
+                        }
                         var htmlSt = '<div class="ui-grid-c">';
                         htmlSt += '<div class="ui-block-a">' + res[0] + '</div>';
                         htmlSt += '<div class="ui-block-b">' + res[2] + ' ' + res[3] + '</div>';
@@ -77,10 +77,10 @@ var app = {
 
 
         $("ul[id*=myid] li").click(function () {
-            if (custObj.username.toUpperCase() === "GUEST") {
-                alert("Please register a Dev user to access this operation");
-                return;
-            }
+//            if (custObj.username.toUpperCase() === "GUEST") {
+//                alert("Please register a Dev user to access this operation");
+//                return;
+//            }
             var objId = $(this).attr('id');
             console.log(objId);
             if (objId === 0) {
