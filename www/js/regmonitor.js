@@ -112,6 +112,10 @@ var app = {
         });
 
         $("#stopbtn").click(function () {
+            if (custObj.type == 99) {
+                alert("Only Dev user supprots this operation");
+                return;
+            }            
             var monCmd = 'stop';
             var url = 'locallab';
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,
@@ -122,6 +126,10 @@ var app = {
         });
 
         $("#startbtn").click(function () {
+            if (custObj.type == 99) {
+                alert("Only Dev user supprots this operation");
+                return;
+            }                
             var monCmd = 'start';
             var url = 'locallab';
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,

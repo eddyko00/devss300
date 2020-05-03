@@ -110,6 +110,10 @@ var app = {
         });
 
         $("#stopbtn").click(function () {
+            if (custObj.type != 99) {
+                alert("Only Admin user supprots this operation");
+                return;
+            }
             var monCmd = 'stop';
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'monCmd': monCmd};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
@@ -118,6 +122,10 @@ var app = {
         });
 
         $("#startbtn").click(function () {
+            if (custObj.type != 99) {
+                alert("Only Admin user supprots this operation");
+                return;
+            }            
             var monCmd = 'start';
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'monCmd': monCmd};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
