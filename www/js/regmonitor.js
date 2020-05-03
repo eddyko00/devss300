@@ -112,7 +112,7 @@ var app = {
         });
 
         $("#stopbtn").click(function () {
-            if (custObj.type == 99) {
+            if (custObj.type === 99) {
                 alert("Only Dev user supprots this operation");
                 return;
             }            
@@ -126,7 +126,7 @@ var app = {
         });
 
         $("#startbtn").click(function () {
-            if (custObj.type == 99) {
+            if (custObj.type === 99) {
                 alert("Only Dev user supprots this operation");
                 return;
             }                
