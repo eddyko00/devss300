@@ -59,7 +59,7 @@ var app = {
             var feat = featObjList[accId - 10];
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'feat': feat};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "splunkServFeat_1.html";
+            window.location.href = "splunkservfeat_1.html";
         });
 
     }
