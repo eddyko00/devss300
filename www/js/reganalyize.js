@@ -38,8 +38,10 @@ var app = {
 
 
         $("ul[id*=myid] li").click(function () {
-//            alert($(this).html()); // gets innerHTML of clicked li
-//            alert($(this).text()); // gets text contents of clicked li
+            if (custObj.username.toUpperCase() === "GUEST") {
+                alert("Please register a Dev user to access this operation");
+                return;
+            } 
             var accId = $(this).attr('id');
             console.log(accId);
             if (accId === 0) {
