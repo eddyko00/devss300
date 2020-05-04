@@ -18,14 +18,15 @@ var app = {
 
         $(document).keypress(function (event) {
             var keycode = (event.keyCode ? event.keyCode : event.which);
-            if (keycode == '13') {
+            if (keycode === '13') {
                 var txemail = document.getElementById("txt-email").value;
                 var txtpassword = document.getElementById("txt-password").value;
                 if (txemail === "") {
-                    txemail = "guest";
-                }
-                if (txtpassword === "") {
-                    txtpassword = "guest";
+                    if (txtpassword === "") {
+                        txemail = "GUEST";
+                        txtpassword = "guest";
+
+                    }
                 }
 
                 $.ajax({
@@ -46,7 +47,7 @@ var app = {
                     var iisWebObj = {'custObjStr': custObjStr};
                     window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
 
-                    if (custObj !== null) {
+                    if (custObj != null) {
                         window.location.href = "account_1.html";
                     } else {
 //                    $('#error_message').fadeIn().html(jsonStr);
@@ -81,14 +82,14 @@ var app = {
                 var webMsg = result.webMsg;
                 console.log(webMsg);
                 var resultID = webMsg.resultID;
-                if (resultID === 1) {
+                if (resultID == 1) {
                     $("#txt-email").val(txtemailaddress);
                     // Set the input field with unique ID #name
                     $("#txt-password").val(txtpassword);
                     window.location.href = "#page-signup-succeeded";
                 } else {
                     var errorM = "Please try again.";
-                    if (resultID === 2) {
+                    if (resultID == 2) {
                         var errorM = "The customer account has already existed. Please try again.";
                     }
                     $('#error_message-signup').fadeIn().html(errorM);
@@ -108,7 +109,7 @@ var app = {
                 if (txtpassword === "") {
                     txemail = "GUEST";
                     txtpassword = "guest";
-                    
+
                 }
             }
 
@@ -129,7 +130,7 @@ var app = {
                 var iisWebObj = {'custObjStr': custObjStr};
                 window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
 
-                if (custObj !== null) {
+                if (custObj != null) {
                     window.location.href = "account_1.html";
                 } else {
 //                    $('#error_message').fadeIn().html(jsonStr);

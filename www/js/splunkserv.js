@@ -18,7 +18,7 @@ var app = {
         console.log(iisWebObj);
 
         var custObjStr = iisWebObj.custObjStr;
-        if (custObjStr === null) {
+        if (custObjStr == null) {
             window.location.href = "index.html";
         }
         var custObj = JSON.parse(custObjStr);
@@ -52,7 +52,7 @@ var app = {
             }
             var accId = $(this).attr('id');
             console.log(accId);
-            if (accId === 0) {
+            if (accId == 0) {
 //                alert(accId);
                 return;
             }

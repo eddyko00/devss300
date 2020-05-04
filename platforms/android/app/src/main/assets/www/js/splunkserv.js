@@ -8,8 +8,6 @@ var app = {
 
         });
 
-
-
         var iisWebSession = "iisWebSession";
         iisurl = iisurl.replace("abc", "");
         iisurl = iisurl.replace("abc", "");
@@ -28,15 +26,15 @@ var app = {
         var servObjList = JSON.parse(servObjListStr);
         var serv = iisWebObj.serv;
         var featObjListStr = iisWebObj.featObjListStr;
-        var featObjLis = JSON.parse(featObjListStr);
+        var featObjList = JSON.parse(featObjListStr);
 
-        $("#accheader").html(serv + " Feature");
+        $("#accheader").html("Splunk (" + serv + ") Feature");
 
         $("#myid").html(" "); //clear the field
-        for (i = 0; i < featObjLis.length; i += 2) {
-            var featName = featObjLis[i];
-            var featCnt = featObjLis[i + 1];
-            if (featName == "") {
+        for (i = 0; i < featObjList.length; i += 2) {
+            var featName = featObjList[i];
+            var featCnt = featObjList[i + 1];
+            if (featName === "") {
                 continue;
             }
             var objId = i + 10;
@@ -48,23 +46,23 @@ var app = {
         }
 
         $("ul[id*=myid] li").click(function () {
-//            alert($(this).html()); // gets innerHTML of clicked li
-//            alert($(this).text()); // gets text contents of clicked li
+            if (custObj.username.toUpperCase() === "GUEST") {
+                alert("Please register a Dev user to access this operation");
+                return;
+            }
             var accId = $(this).attr('id');
             console.log(accId);
             if (accId == 0) {
 //                alert(accId);
                 return;
             }
-            var serv = accObjList[accId + 10];
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv};
+            var feat = featObjList[accId - 10];
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv, 'feat': feat};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
-            window.location.href = "splunkServ_1.html";
+            window.location.href = "splunkservfeat_1.html";
         });
 
-
-
-    },
+    }
 };
 app.initialize();
 

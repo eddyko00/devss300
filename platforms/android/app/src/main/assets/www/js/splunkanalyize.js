@@ -8,8 +8,6 @@ var app = {
 
         });
 
-
-
         var iisWebSession = "iisWebSession";
         iisurl = iisurl.replace("abc", "");
         iisurl = iisurl.replace("abc", "");
@@ -27,6 +25,7 @@ var app = {
         var servObjListStr = iisWebObj.servObjListStr;
         var servObjList = JSON.parse(servObjListStr);
 
+        
         $("#myid").html(" "); //clear the field
         for (i = 0; i < servObjList.length; i+=2) {
             var servName = servObjList[i+1];
@@ -40,8 +39,10 @@ var app = {
 
 
         $("ul[id*=myid] li").click(function () {
-//            alert($(this).html()); // gets innerHTML of clicked li
-//            alert($(this).text()); // gets text contents of clicked li
+            if (custObj.username.toUpperCase() === "GUEST") {
+                alert("Please register a Dev user to access this operation");
+                return;
+            }
             var accId = $(this).attr('id');
             console.log(accId);
             if (accId == 0) {
@@ -56,7 +57,7 @@ var app = {
 
 
 
-    },
+    }
 };
 app.initialize();
 

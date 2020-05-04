@@ -39,19 +39,21 @@
         <div data-role="page" id="page-index">
             <div data-role="header" data-theme="c" data-position="fixed">
                 <!--https://demos.jquerymobile.com/1.4.5/navigation-linking-pages/   rel="external"-->
-                <a href="account.html" rel="external" data-icon="back" data-iconpos="notext" data-transition="slide" data-direction="reverse" data-inline="true"></a>
+                <a href="monserv_1.html" rel="external" data-icon="back" data-iconpos="notext" data-transition="slide" data-direction="reverse" data-inline="true"></a>
+                <a href="monanalyize.html" rel="external" data-role="button" data-icon="home" data-iconpos="notext" data-theme="c" data-inline="true"></a>
+
                 <!--<a href="#page-msg" rel="external" data-icon="mail" data-iconpos="notext" data-transition="slide" data-direction="reverse" data-inline="true"></a>-->
 
                 <h1>SSNS DevOp Sys</h1>
             </div><!-- /header -->
 
-            <h2 id="accheader" class="mc-text-center">Splunk Service</h2>
+            <h2 id="accheader" class="mc-text-center">Service</h2>
             <p></p>
             <div data-role="content" id="textcontent">
 
                 <!--<ul id="myid" data-role="listview" data-theme="d" data-divider-theme="d">-->                    
                 <ul id="myid" data-role="listview" data-theme="d" data-divider-theme="d">
-                    <li id="0">Service Listing</li>
+                    <li id="0">Service Feature Listing</li>
                 </ul> 
 
                 <p><br></p> 
@@ -64,10 +66,23 @@
             </div>
         </div>
 
+        <div data-role="page" id="page-detail">
+            <div data-role="header" data-theme="c" data-position="fixed">
+                <a href="#page-index" data-icon="back" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+                <h1>SSNS DevOp System</h1>
+            </div><!-- /header -->                    
+            <div data-role="content" id="textcontent">
+                <button id="rtbtn"  >Real Time Testing</button>
+                <ul id="detailid" data-role="listview" data-theme="d" data-divider-theme="d">
+                    <li id="0">Test Operation</li>                    
+                </ul> 
+            </div>          
+        </div>  
+
 
         <script src="lib/jquery/2.1.1/jquery-2.1.1.min.js"></script>
         <script src="lib/jqm/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/ssnsweb.js"></script>            
-        <script type="text/javascript" src="js/splunkanalyize.js"></script>          
+        <script type="text/javascript" src="js/monservfeattestres.js"></script>          
     </body>
 </html>

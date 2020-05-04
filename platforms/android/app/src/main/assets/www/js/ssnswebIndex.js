@@ -5,13 +5,8 @@ var app = {
     initialize: function () {
 
         $(document).ready(function () {
-            // after the page elements are all loaded, then run the script
-            // Set the input field with unique ID #email to a value
-//            $("#txt-email").val('GUEST');
-//            $("#txt-password").val('guest');
 
         });
-
 
 //        var iisurl = "https://iiswebsrv.herokuapp.com/";
         var iisWebSession = "iisWebSession";
@@ -23,14 +18,15 @@ var app = {
 
         $(document).keypress(function (event) {
             var keycode = (event.keyCode ? event.keyCode : event.which);
-            if (keycode == '13') {
+            if (keycode === '13') {
                 var txemail = document.getElementById("txt-email").value;
                 var txtpassword = document.getElementById("txt-password").value;
-                if (txemail == "") {
-                    txemail = "guest";
-                }
-                if (txtpassword == "") {
-                    txtpassword = "guest";
+                if (txemail === "") {
+                    if (txtpassword === "") {
+                        txemail = "GUEST";
+                        txtpassword = "guest";
+
+                    }
                 }
 
                 $.ajax({
@@ -51,11 +47,7 @@ var app = {
                     var iisWebObj = {'custObjStr': custObjStr};
                     window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
 
-//                var iisWebObjStr = window.localStorage.getItem('iisWebSession');
-//                var iisWebObj = JSON.parse(iisWebObjStr);
-//                console.log(iisWebObj);
-
-                    if (custObj !== null) {
+                    if (custObj != null) {
                         window.location.href = "account_1.html";
                     } else {
 //                    $('#error_message').fadeIn().html(jsonStr);
@@ -113,13 +105,11 @@ var app = {
             var txemail = document.getElementById("txt-email").value;
             var txtpassword = document.getElementById("txt-password").value;
 
-            if (txemail == "") {
-                if (txtpassword == "") {
+            if (txemail === "") {
+                if (txtpassword === "") {
                     txemail = "GUEST";
                     txtpassword = "guest";
 
-                    txemail = "admin1";
-                    txtpassword = "abc123";
                 }
             }
 
@@ -140,7 +130,7 @@ var app = {
                 var iisWebObj = {'custObjStr': custObjStr};
                 window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
 
-                if (custObj !== null) {
+                if (custObj != null) {
                     window.location.href = "account_1.html";
                 } else {
 //                    $('#error_message').fadeIn().html(jsonStr);
@@ -149,7 +139,7 @@ var app = {
             }
         });
 
-    },
+    }
 };
 app.initialize();
 

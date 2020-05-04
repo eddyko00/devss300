@@ -41,7 +41,7 @@ var app = {
 
             success: function (resultFeatObjList) {
                 console.log(resultFeatObjList);
-                if (resultFeatObjList == "") {
+                if (resultFeatObjList === "") {
                     window.location.href = "index.html";
                 }
 
@@ -53,7 +53,7 @@ var app = {
             }
         });
 
-    },
+    }
 };
 app.initialize();
 
