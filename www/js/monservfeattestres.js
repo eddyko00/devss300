@@ -42,7 +42,8 @@ var app = {
         $("#myid").html(" "); //clear the field
         if (typeof resultList !== 'undefined') {
             for (j = 0; j < resultList.length; j++) {
-                $("#myid").append('<li >' + resultList[j] + '</li>');
+                $("#myid").append('<br>' + resultList[j]);
+//                $("#myid").append('<li >' + resultList[j] + '</li>');
             }
         }
 

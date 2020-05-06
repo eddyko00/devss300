@@ -73,7 +73,6 @@ var app = {
                         var htmlName = '<li id="' + objId + '"><a href="#">' + htmlSt;
                         htmlName += '</a></li>';
                         $("#myid").append(htmlName);
-                        $("#myid").append(htmlName);
                     }
                 }
             }
