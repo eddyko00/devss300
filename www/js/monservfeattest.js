@@ -42,7 +42,7 @@ var app = {
             for (j = 0; j < cmdList.length; j += 2) {
                 var cmdDesc = cmdList[j];
                 var cmdOper = cmdList[j + 1];
-                var objId = i + 10;
+                var objId = j + 10;
                 var htmlName = 'Test Operation:' + cmdDesc;
                 $("#myid").append('<li id="' + objId + '" value ="' + cmdOper + '"><a href="#">' + htmlName + '</a></li>');
             }
@@ -58,11 +58,11 @@ var app = {
                 return;
             }
 
-            var featObj = featIDObjList[accId - 10];
+//            var featObj = featIDObjList[accId - 10];
             var prodDataStr = featObj.data;
             var prodData = JSON.parse(prodDataStr);
             var cmdList = prodData.cmd;
-            var cmd = cmdList[accId - 10 + 1];
+            var cmd = cmdList[accId - 10 + 1]; // get cmd need 1 more
             cmd = cmd.toLowerCase();
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'serv': serv
                 , 'featIDObjListStr': featIDObjListStr, 'featObjId': featObjId, 'cmd': cmd};
