@@ -47,6 +47,11 @@ var app = {
                     var prodDataStr = monObj.data;
                     var prodData = JSON.parse(prodDataStr);
                     var repList = prodData.reportList;
+                    if (repList == null) {
+                        var htmlName = '<li id="' + objId + '"></li>';
+                        $("#myid").append(htmlName);
+                        continue;
+                    }
                     for (j = 0; j < repList.length; j++) {
                         var report = repList[j];
                         var res = report.split(",");
@@ -117,9 +122,9 @@ var app = {
                 return;
             }
             var monCmd = 'stop';
-             var serv = "";
+            var serv = "";
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,
-               'monCmd': monCmd, 'serv': serv};
+                'monCmd': monCmd, 'serv': serv};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
             window.location.href = "monmonitor_2.html";
             return;
@@ -151,7 +156,7 @@ var app = {
             var monCmd = 'start';
             var serv = $('#myidtrmodel').val();
             if (serv === "all") {
-                serv ="";
+                serv = "";
             }
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,
                 'monCmd': monCmd, 'serv': serv};

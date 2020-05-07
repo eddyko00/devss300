@@ -48,6 +48,11 @@ var app = {
                     var prodDataStr = monObj.data;
                     var prodData = JSON.parse(prodDataStr);
                     var repList = prodData.reportList;
+                    if (repList == null) {
+                        var htmlName = '<li id="' + objId + '"></li>';
+                        $("#myid").append(htmlName);
+                        continue;
+                    }
                     for (j = 0; j < repList.length; j++) {
                         var report = repList[j];
                         var res = report.split(",");
@@ -115,7 +120,7 @@ var app = {
             if (custObj.type == 99) {
                 alert("Only Dev user supprots this operation");
                 return;
-            }            
+            }
             var monCmd = 'stop';
             var url = 'locallab';
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,
@@ -129,7 +134,7 @@ var app = {
             if (custObj.type == 99) {
                 alert("Only Dev user supprots this operation");
                 return;
-            }                
+            }
             var monCmd = 'start';
             var url = 'locallab';
             var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,
