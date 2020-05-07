@@ -43,7 +43,15 @@ var app = {
 
             success: function (resultObjList) {
 //                console.log(resultMonObjList);
-                alert ("Return Status " + resultObjList);
+
+                if (resultObjList == 1) {
+                    alert("Return Status - Successful");
+
+                } else if (resultObjList == 2) {
+                    alert("Return Status - Already started");
+                } else {
+                    alert("Return Status " + resultObjList);
+                }                
                 if (resultObjList == null) {
                     window.location.href = "index.html";
                 }
