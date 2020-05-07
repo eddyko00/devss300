@@ -31,7 +31,7 @@
         <link rel="stylesheet" type="text/css" href="css/app.css" />
         <link rel="shortcut icon" href="#" />
         <title>SSNS DevOp System</title>
-         <!--bookit.min.css-->
+        <!--bookit.min.css-->
         <style>
             html {
                 font-size: 100%;
@@ -297,20 +297,20 @@
             }
 
         </style>
-                        
-            
+
+
     </head>
 
     <!--
     https://demos.jquerymobile.com/1.3.2/widgets/listviews/index.html#&ui-state=dialog
     -->
     <body>
-    <script language="javascript">
-        setInterval(function () {
-            window.location.href = "monmonitor_1.html";
-          
-        }, 60000);
-    </script>           
+        <script language="javascript">
+            setInterval(function () {
+                window.location.href = "monmonitor_1.html";
+
+            }, 60000);
+        </script>           
         <div data-role="page" id="page-index">
             <div data-role="header" data-theme="c" data-position="fixed">
                 <!--https://demos.jquerymobile.com/1.4.5/navigation-linking-pages/   rel="external"-->
@@ -342,6 +342,31 @@
             </div>
         </div>
 
+        <div data-role="page" id="page_conf">
+            <div data-role="header" data-theme="c">
+                <a href="#page-index" data-icon="back" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+                <h1>SSNS DevOp System</h1>
+            </div><!-- /header -->
+            <div role="main" class="ui-content">
+                <h2 class="mc-text-center">Auto Monitor Configuration</h2>
+            </div><!-- /content -->
+            <div data-role="content" id="textcontent">
+
+                <ul id="myidconf" data-role="listview" data-theme="d" data-divider-theme="d">
+                    <li id="0">Configuration</li>
+                </ul>   
+
+            </div>
+            <select id="myidtrmodel">
+                <option value="all" selected="selected" >All Service</option>
+                <option value="prod">SSNS Product Inventory</option>                
+                <option value="app">SSNS Appointment</option>
+                <option value="wifi">SSNS Wifi Sevice</option>                
+                <option value="apttvp">SSNS TTV Service</option>                
+            </select>
+            <p></p><br>
+            <button id="savesubmit" >Save Changes</button>
+        </div><!-- /page -->    
 
         <div data-role="page" id="page-detail">
             <div data-role="header" data-theme="c" data-position="fixed">
