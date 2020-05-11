@@ -28,9 +28,12 @@ var app = {
         var resultMonObjList = JSON.parse(resultMonObjListStr);
         var serv = iisWebObj.serv;
         var monCmd = iisWebObj.monCmd;
+        var iisurllocal = iisurl_LOCAL;
         $.ajax({
-            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id
+            url: iisurllocal + "/cust/" + custObj.username + "/id/" + custObj.id
                     + "/mon/" + monCmd + "?app=" + serv,
+//            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id
+//                    + "/mon/" + monCmd + "?app=" + serv,
             crossDomain: true,
             cache: false,
             beforeSend: function () {
