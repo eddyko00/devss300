@@ -64,7 +64,7 @@ var app = {
                         htmlSt += '<div class="ui-block-b">' + res[2] + ' ' + res[3] + '</div>';
                         htmlSt += '<div class="ui-block-c">' + res[4] + ' ' + res[5] + '</div>';
                         var exec = res[7];
-                        exec = exec / 1000;
+                        exec = exec / 1;
                         var execSt = exec.toFixed(2) + ' sec';
                         htmlSt += '<div class="ui-block-d">' + execSt + '</div>';
                         htmlSt += '</div>';
