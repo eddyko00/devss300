@@ -53,7 +53,7 @@ var app = {
                 if (resultObjList == 1) {
                     alert("Return Status - Successful");
 
-                } else if (resultObjList == 10) {
+                } else if (resultObjList == 2) {
                     alert("Return Status - Already started");
                 } else {
                     alert("Return Status " + resultObjList);

@@ -26,10 +26,14 @@ var app = {
         var servObjList = JSON.parse(servObjListStr);
         var resultMonObjListStr = iisWebObj.resultMonObjListStr;
         var resultMonObjList = JSON.parse(resultMonObjListStr);
-        
+        var serv = iisWebObj.serv;
         var monCmd = iisWebObj.monCmd;
+        var iisurllocal = iisurl_LOCAL;
         $.ajax({
-            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id + "/mon/"+monCmd,
+            url: iisurllocal + "/cust/" + custObj.username + "/id/" + custObj.id
+                    + "/mon/" + monCmd + "?app=" + serv,
+//            url: iisurl + "/cust/" + custObj.username + "/id/" + custObj.id
+//                    + "/mon/" + monCmd + "?app=" + serv,
             crossDomain: true,
             cache: false,
             beforeSend: function () {
@@ -43,7 +47,15 @@ var app = {
 
             success: function (resultObjList) {
 //                console.log(resultMonObjList);
-                alert ("Return Status " + resultObjList);
+
+                if (resultObjList == 1) {
+                    alert("Return Status - Successful");
+
+                } else if (resultObjList == 2) {
+                    alert("Return Status - Already started");
+                } else {
+                    alert("Return Status " + resultObjList);
+                }
                 if (resultObjList == null) {
                     window.location.href = "index.html";
                 }

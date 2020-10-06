@@ -25,7 +25,8 @@ var app = {
                     if (txtpassword === "") {
                         txemail = "GUEST";
                         txtpassword = "guest";
-
+                        txemail = "admin1";
+                        txtpassword = "abc123";
                     }
                 }
 
@@ -109,7 +110,8 @@ var app = {
                 if (txtpassword === "") {
                     txemail = "GUEST";
                     txtpassword = "guest";
-
+                    txemail = "admin1";
+                    txtpassword = "abc123";
                 }
             }
 

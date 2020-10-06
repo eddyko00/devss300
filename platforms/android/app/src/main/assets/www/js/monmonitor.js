@@ -47,6 +47,11 @@ var app = {
                     var prodDataStr = monObj.data;
                     var prodData = JSON.parse(prodDataStr);
                     var repList = prodData.reportList;
+                    if (repList == null) {
+                        var htmlName = '<li id="' + objId + '"></li>';
+                        $("#myid").append(htmlName);
+                        continue;
+                    }
                     for (j = 0; j < repList.length; j++) {
                         var report = repList[j];
                         var res = report.split(",");
@@ -59,7 +64,7 @@ var app = {
                         htmlSt += '<div class="ui-block-b">' + res[2] + ' ' + res[3] + '</div>';
                         htmlSt += '<div class="ui-block-c">' + res[4] + ' ' + res[5] + '</div>';
                         var exec = res[7];
-                        exec = exec / 1000;
+                        exec = exec / 1;
                         var execSt = exec.toFixed(2) + ' sec';
                         htmlSt += '<div class="ui-block-d">' + execSt + '</div>';
                         htmlSt += '</div>';
@@ -117,24 +122,49 @@ var app = {
                 return;
             }
             var monCmd = 'stop';
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'monCmd': monCmd};
+            var serv = "";
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,
+                'monCmd': monCmd, 'serv': serv};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
             window.location.href = "monmonitor_2.html";
             return;
         });
 
+//        $("#startbtn").click(function () {
+//            if (custObj.type != 99) {
+//                alert("Only Admin user supprots this operation");
+//                return;
+//            }            
+//            var monCmd = 'start';
+//            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'monCmd': monCmd};
+//            window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
+//            window.location.href = "monmonitor_2.html";
+//            return;
+//        });
+
+
         $("#startbtn").click(function () {
+            window.location.href = "#page_conf";
+        });
+
+        $("#savesubmit").click(function () {
+
             if (custObj.type != 99) {
                 alert("Only Admin user supprots this operation");
                 return;
-            }            
+            }
             var monCmd = 'start';
-            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr, 'monCmd': monCmd};
+            var serv = $('#myidtrmodel').val();
+            if (serv === "all") {
+                serv = "";
+            }
+            var iisWebObj = {'custObjStr': custObjStr, 'servObjListStr': servObjListStr, 'resultMonObjListStr': resultMonObjListStr,
+                'monCmd': monCmd, 'serv': serv};
             window.localStorage.setItem(iisWebSession, JSON.stringify(iisWebObj));
             window.location.href = "monmonitor_2.html";
             return;
-        });
 
+        });
 
     }
 };
