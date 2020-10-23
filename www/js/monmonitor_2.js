@@ -29,6 +29,8 @@ var app = {
         var serv = iisWebObj.serv;
         var monCmd = iisWebObj.monCmd;
         var iisurllocal = iisurl_OP; //iisurl_LOCAL;
+        iisurllocal = iisurllocal.replace("abc", "");
+        iisurllocal = iisurllocal.replace("abc", "");
         $.ajax({
             url: iisurllocal + "/cust/" + custObj.username + "/id/" + custObj.id
                     + "/mon/" + monCmd + "?app=" + serv,

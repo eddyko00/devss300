@@ -30,6 +30,9 @@ var app = {
         var featObjId = iisWebObj.featObjId;
         var cmd = iisWebObj.cmd;
         var iisurllocal = iisurl_OP; //iisurl_LOCAL;
+        iisurllocal = iisurllocal.replace("abc", "");
+        iisurllocal = iisurllocal.replace("abc", "");
+        
         $.ajax({
             url: iisurllocal + "/cust/" + custObj.username + "/id/" + custObj.id + "/serv/" + serv
                     + "/id/" + featObjId + "/rt/" + cmd,
