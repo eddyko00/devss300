@@ -28,7 +28,7 @@ var app = {
         var resultMonObjList = JSON.parse(resultMonObjListStr);
         var serv = iisWebObj.serv;
         var monCmd = iisWebObj.monCmd;
-        var iisurllocal = iisurl_LOCAL;
+        var iisurllocal = iisurl_OP; //iisurl_LOCAL;
         $.ajax({
             url: iisurllocal + "/cust/" + custObj.username + "/id/" + custObj.id
                     + "/mon/" + monCmd + "?app=" + serv,
