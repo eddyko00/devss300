@@ -50,7 +50,7 @@ var app = {
             htmlName += '<div class="ui-block-b">Ban: ' + banid + '</div>';
             htmlName += '<div class="ui-block-b">Tid ' + tiid + '</div>';
             htmlName += '</div>';
-            htmlName += '<br>Updatedate: ' + featObj.updatedatedisplay;
+            htmlName += '<br>Update date: ' + featObj.updatedatedisplay;
             htmlName += '<br>Detail splunk trace:<br>uuid: ' + featObj.uid;
 
 
